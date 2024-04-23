@@ -27,9 +27,9 @@ body{
     /* font-weight: 300; */
     color: var(--bg);
 }
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
   width: 10px;
-}
+} */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px var(--color3); 
   border-radius: 10px;
@@ -776,7 +776,7 @@ body{
 .wrapper{
   text-align: center;
   width: 100%;
-  min-height: 680px;
+  /* height: fit-content; */
 }
 .row{
   width: 100%;
@@ -863,13 +863,14 @@ body{
   grid-area: form;
 }
 .info{
+  height: 100%;
   grid-area: info;
 }
 .map{
   grid-area: map;
 }
 .contact{
-  padding: 40px;
+  padding: 10px 40px 20px 40px;
   background: var(--color2);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 20px );
@@ -952,6 +953,7 @@ body{
   background:var(--color);
 }
 .info h3{
+  padding-top: -45px;
   color: var(--color3);
 }
 .info .infoBox div{
@@ -984,6 +986,7 @@ body{
 }
 .socMed{
   margin-top: 40px;
+  margin-left: 10px;
   display: flex;
 }
 .socMed li{
