@@ -26,7 +26,7 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="profile.html">Profile</a>
+                <li><a href="logout.html">Logout</a>
                 </li>
             </ul>
         </div>
@@ -42,23 +42,32 @@
         <div class="box">
             <!--Form-->
             <div class="contact form">
-                <h3>Send a Request</h3>
+                <div style="display: flex; justify-content: space-between;">
+                    <h3>Send a Request</h3>
+                </div>
                 <form class="gform pure-form pure-form-stacked" method="POST" data-email="medalladachris100@gmail.com"
                     action="https://script.google.com/macros/s/AKfycbwsiaU1gQliSZE7SXJD2elgH2quXOuTVpa8oYqlq4hIgmjHI2L_SS8ma-ZGzkPcvoc0Hw/exec"
                     onsubmit="event.preventDefault(); validateForm()">
                     <div class="formBox">
-                        <div class="row50">
-                            <div class="inputBox">
-                                <label for="name">Name:</label>
-                                <input type="text" name="name" id="name" placeholder="Your Name">
-                                <small class="error"></small>
+                        <div style="display: flex;">
+                            <div class="row50" style="width: 50%; height: 75%;padding-top: 25px;">
+                                <div class="inputBox" style="width: 100%;">
+                                    <label for="name">Name:</label>
+                                    <input type="text" name="name" id="name" placeholder="Your Name">
+                                    <small class="error"></small>
+                                </div>
+                                <div class="inputBox" style="width: 100%;">
+                                    <label for="email">Email:</label>
+                                    <input type="text" name="email" id="email" placeholder="Your Email">
+                                    <small class="error"></small>
+                                </div>
                             </div>
-                            <div class="inputBox">
-                                <label for="email">Email:</label>
-                                <input type="text" name="email" id="email" placeholder="Your Email">
-                                <small class="error"></small>
+                            <div style="margin-left: 80px; display: flex; justify-content: center;">
+                                <img src="../contact_logo.gif" style="width: 300px ;height: 300px;" alt="">
                             </div>
+
                         </div>
+
                         <div class="row100">
                             <div class="inputBox">
                                 <label for="message">Message:</label>
@@ -66,6 +75,7 @@
                                 <small class="error"></small>
                             </div>
                         </div>
+
                         <div class="row100">
                             <div class="inputBox">
                                 <input type="submit" id="sendMessage" value="Send Message">
@@ -77,22 +87,23 @@
             </div>
 
             <!--Info-->
-            <div class="contact info">
+            <div class="contact info" style="padding-left: 15%;">
                 <h3>Contact Information</h3>
                 <div class="infoBox">
                     <div>
                         <span><ion-icon name="location-outline"></ion-icon></span>
                         <p>Surat City, Gujarat <br>India</p>
                     </div>
-                    <div>
+                    <div style="margin-top: 15px;">
                         <span><ion-icon name="mail-outline"></ion-icon></span>
-                        <a href="mailto:@gmail.com">@gmail.com</a>
+                        <a href="mailto:flavourfusion@gmail.com">flavourfusion@gmail.com</a>
                     </div>
-                    <div>
+                    <div style="margin-top: 35px;">
                         <span><ion-icon name="call-outline"></ion-icon></span>
-                        <a href="tel:+">+</a>
+                        <a href="tel:+91 9316352670">+91 9316352670</a>
                     </div>
-                    <ul class="socMed">
+                    <ul class="socMed" style="margin-top: 35px;">
+                        <br>
                         <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
                         <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
                         <li><a href=""><ion-icon name="logo-github"></ion-icon></a></li>
@@ -124,7 +135,7 @@
             <a href="home.html">Home</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-            <a href="profile.html">Profile</a>
+            <a href="logout.html">Logout</a>
         </div>
         <p>Copyright &copy; 2024 EatExpress. All right reserved</p>
     </div>
