@@ -50,44 +50,96 @@
     <div class="card-grid" >
         <div class="food-list" id="food-list">
         <?php
-// Database connection code here
-$conn = mysqli_connect("localhost", "root", "", "wp");
+        // Database connection code here
+        $conn = mysqli_connect("localhost", "root", "", "wp");
+        $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+        $sql = " SELECT * FROM recipes WHERE dishName LIKE '%$searchTerm%' ORDER BY recipe_id DESC ";
+        $result = mysqli_query($conn, $sql);
+            while($rows=$result->fetch_assoc()){
+                print('<div class="card card-shadow">');
+                    print('<div class="card-header card-image">');
+                    print("<img src='../img/" . $rows['file1'] . "' alt='Recipe Image'>");
+                    print('</div>');
+                    print('<div class="card-body" >');
+                    print('<h2>' . $rows['dishName'] . '</h2>');
+                    print('</div>');
+                    print('<div class="card-footer">');
+                    print('<button class="btn" onclick="showRecipeDetails(' . $rows['recipe_id'] . ')">Get Recipe</button>');
+                    print('</div>');
+                print("</div>");
+            }
+	
+	// Close database connection
+	mysqli_close($conn);
+	?>
+            <div class="card card-shadow">
+                <div class="card-header card-image">
+                    <img style="max-height: 200px; object-fit:cover;" src="../img/red_dish.jpg">
+                </div>
+                <div class="card-body">
+                    <h3> About Recipe </h3>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="get5thRecipe()">Add</button>
+                    <button class="btn" onclick="get5thRecipe()">Update</button>
+                    <button class="btn" onclick="get5thRecipe()">Delete</button>
+                </div>
+            </div>
 
-// Check if search term is provided
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+        </div>
 
-// Query to fetch recipes based on search term
-$sql = "SELECT * FROM recipes WHERE dishName LIKE '%$searchTerm%' ORDER BY recipe_id DESC";
-$result = mysqli_query($conn, $sql);
+        <!--Ending of Main Content-->
 
-// Loop through the results and display each recipe
-while ($rows = $result->fetch_assoc()) {
-    print('<div class="card card-shadow">');
-    print('<div class="card-header card-image">');
-    print("<img src='../img/" . $rows['file1'] . "' alt='Recipe Image'>");
-    print('</div>');
-    print('<div class="card-body">');
-    print('<h3>' . $rows['dishName'] . '</h3>');
-    print('</div>');
-    print('<div class="card-footer">');
-    // Pass recipe_id to the JavaScript function getRecipe01()
-    print('<button class="btn" onclick="getRecipe01(' . $rows['recipe_id'] . ')">Get Recipe</button>');
-    print('</div>');
-    print("</div>");
-}
+        <!--Recipe Details-->
 
-// Close database connection
-mysqli_close($conn);
-?>
+            
+    <div class="meal-detail" id="meal-detail" style="display: none;">
+        <!-- recipe close btn -->
+        <button type="button" class="btn recipe-close-btn" id="recipe-close-btn" onclick="closeRecipeDetails()">
+            <i class="fas fa-times"></i>
+        </button>
 
-        </div> 
+        <!-- recipe details -->
+        <div class="meal-content">
+            <?php
+            if (isset($_GET['recipe_id'])) {
+                $recipeId = $_GET['recipe_id'];
 
+                // Database connection code here
+                $conn = mysqli_connect("localhost", "root", "", "wp");
+
+                // Fetch the recipe details from the database
+                $sql = "SELECT * FROM recipes WHERE recipe_id = $recipeId";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+
+                if ($row) {
+                    // Display the recipe details
+                    print('<h2 class="meal-name">' . $row['dishName'] . '</h2>');
+                    print('<div class="meal-about">');
+                    print('<h3 class="meal-title-about">About Meal</h3>');
+                    print('<p class="meal-descript-about">' . $row['description'] . '</p>');
+                    print('</div>');
+                    print('<div class="meal-instruct">');
+                    print('<h3>Ingredients:</h3>');
+                    print('<p>' . $row['ingredients'] . '</p>');
+                    print('<h3>Instructions:</h3>');
+                    print('<p>' . $row['instructions'] . '</p>');
+                    print('</div>');
+                    print('<div class="meal-img">');
+                    print("<img src='../img/" . $row['file1'] . "' alt='Recipe Image'>");
+                    print('</div>');
+                } else {
+                    print('Recipe not found.');
+                }
+
+                // Close database connection
+                mysqli_close($conn);
+            }
+            ?>
+        </div>
     </div>
-
-    <!-- Recipe Details Container -->
-    <div class="recipe-details" id="recipe-details">
-        <!-- Recipe Details -->
-    </div>
+    <!--Ending of Recipe Details-->
 
     <!--Footer-->
     <div class="footer">
@@ -109,4 +161,32 @@ mysqli_close($conn);
     <!--Ending of Footer-->
 
 <!--Script for Javascript-->
-<script src="../js/in
+<script src="../js/index.js"></script>
+    <script>
+        function showRecipeDetails(recipeId) {
+            document.getElementById("meal-detail").style.display = "block";
+            window.location.href = "home.php?recipe_id=" + recipeId;
+        }
+
+        function closeRecipeDetails() {
+            document.getElementById("meal-detail").style.display = "none";
+            window.location.href = "home.php";
+        }
+
+        function searchRecipe() {
+            var input = document.getElementById("search").value.toLowerCase();
+            var cards = document.getElementsByClassName("card");
+
+            for (var i = 0; i < cards.length; i++) {
+                var dishName = cards[i].getElementsByTagName("h2")[0].textContent.toLowerCase();
+                if (dishName.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
