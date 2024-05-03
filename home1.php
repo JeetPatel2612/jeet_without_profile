@@ -165,12 +165,12 @@
     <script>
         function showRecipeDetails(recipeId) {
             document.getElementById("meal-detail").style.display = "block";
-            window.location.href = "home.php?recipe_id=" + recipeId;
+            window.location.href = "home1.php?recipe_id=" + recipeId;
         }
 
         function closeRecipeDetails() {
             document.getElementById("meal-detail").style.display = "none";
-            window.location.href = "home.php";
+            window.location.href = "home1.php";
         }
 
         function searchRecipe() {
