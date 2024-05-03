@@ -3,8 +3,8 @@ he'll be redirected to main page -->
 <?php 
 	if(session_status() === PHP_SESSION_NONE) 
 		session_start();
-	require_once("file:///C:/xampp/htdocs/My_first_project-main/php/config.php");
-	require_once("file:///C:/xampp/htdocs/My_first_project-main/php/displayMessageAndRedirect.php");
+	require_once("../php/config.php");
+	require_once("../php/displayMessageAndRedirect.php");
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$username = $_POST['username'];
@@ -25,10 +25,10 @@ he'll be redirected to main page -->
 				}
 				$_SESSION['login_counter'] = $user_data['login_counter'];
 				$_SESSION['username'] = $username;
-				header("Location: ../../templates/main.php");
+				header("Location: ../home1.php");
 				die;
 			} else { 
-				displayMessageAndRedirect("Wrong username or password", "../../templates/login.php");
+				displayMessageAndRedirect("Wrong username or password", "../login.php");
 			}
 		}
 	}
