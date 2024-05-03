@@ -18,12 +18,12 @@ username does not already exist) -->
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    displayMessageAndRedirect("Username already taken.", "registration.html");
+                    displayMessageAndRedirect("Username already taken.", "../loginpage/registration.html");
                 } else{
                     $username = trim($_POST["username"]);
                 }
             } else{
-                displayMessageAndRedirect("Oops! Something went wrong. Please try again later.", "registration.html");
+                displayMessageAndRedirect("Oops! Something went wrong. Please try again later.", "../loginpage/registration.html");
             }
             mysqli_stmt_close($stmt);
         }
@@ -35,9 +35,9 @@ username does not already exist) -->
             if($stmt = mysqli_prepare($con, $sql)){
                 mysqli_stmt_bind_param($stmt, "sss", $username, $password, $email);
                 if(mysqli_stmt_execute($stmt)){
-                    displayMessageAndRedirect("Account successfully created.", "../My_first_project-main/ExpressEat-main/index.html");
+                    displayMessageAndRedirect("Account successfully created.", "../with_logout/home1.php");
                 } else{
-                    displayMessageAndRedirect("Oops! Something went wrong. Please try again later.", "registration.html");
+                    displayMessageAndRedirect("Oops! Something went wrong. Please try again later.", "../loginpage/registration.html");
                 }
                 mysqli_stmt_close($stmt);
             }
