@@ -15,7 +15,7 @@
             include("/php/handle_loading-not-expired.php"); 
         ?>
     <div class="wrapper">
-        <form action="../wp_project-main/html/home.php">
+        <form onsubmit="return validLoginForm();" action="../with_logout/php/handle_login.php" method="post">
             <h1>login</h1>
             <div class="input-box">
                 <i class='bx bxs-user'></i>
